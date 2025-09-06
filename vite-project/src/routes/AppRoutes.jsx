@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { Children, lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router";
 const Home = lazy(() => import("../pages/home/Home.jsx"));
 const Shop = lazy(() => import("../pages/shop/Shop.jsx"));

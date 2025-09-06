@@ -5,14 +5,13 @@ import viteLogo from '/vite.svg'
 import AppRoutes from './routes/AppRoutes'
 
 
+
 function App() {
-
-
   return (
-    <>
-    <AppRoutes />
-      </>
-  )
+    <div className="bg-gray-900 min-h-screen w-full">
+      <AppRoutes />
+    </div>
+  );
 }
 
 export default App
