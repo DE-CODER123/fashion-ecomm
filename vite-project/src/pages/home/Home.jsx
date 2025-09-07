@@ -6,12 +6,17 @@ import { RiCopyrightFill } from "@remixicon/react";
 import Footer from "../../components/Footer";
 export default function Home() {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     async function fetchProducts() {
-      const res = await fetch("https://fakestoreapi.com/products");
-      const data = await res.json();
-      setProducts(data);
-      console.log(data);
+      try {
+        const res = await fetch("https://fakestoreapi.com/products");
+        const data = await res.json();
+        setProducts(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
     }
     fetchProducts();
   }, []);
@@ -19,7 +24,7 @@ export default function Home() {
   return (
     <>
       <NavBar />
-      <section className="flex flex-col md:flex-row items-center justify-between p-4 bg-gray-900">
+      <section className="flex flex-col md:flex-row items-center justify-between p-4 bg-gray-400">
         <div className="md:w-1/2 space-y-6 max-h-full">
           <h2 className="text-4xl text-white font-extrabold leading-tight">
             Unleash Your Style
@@ -41,27 +46,41 @@ export default function Home() {
           <ModelLayout />
         </div>
       </section>
-      <h2 className="text-4xl text-white font-extrabold leading-tight text-center my-8">
+      <h2 className="text-2xl md:text-4xl text-white font-extrabold leading-tight text-center my-8">
         Featured Collections
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-4 gap-6">
-        {products.map((product) => (
-          <div key={product.id} className="shadow-white rounded-2xl py-4 bg-gray-800">
-            {/* Product Image */}
-
-            <img src={product.image} className="mx-auto h-40" />
-            <h3 className="text-white text-center text-lg font-semibold p-4">
-              {product.title}
-            </h3>
-            <p>
-              <span className="text-2xl text-white font-bold px-4">${product.price}</span>
-              <span className="text-sm text-gray-400 line-through px-2">
-                ${(product.price * 1.2).toFixed(2)}
-              </span>
-            </p>
-          </div>
-        ))}
-      </div>
+      {loading ? (
+         <div className="flex items-center justify-center  gap-1">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+      <h1 className="text-2xl font-bold text-white">Loading...</h1>
+    </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-4 gap-6">
+          {products.map((product) => (
+            <div
+              key={product.id}
+              className="shadow-white rounded-2xl py-4 bg-gray-800"
+            >
+              <img
+                src={product.image}
+                className="mx-auto h-40"
+                alt={product.title}
+              />
+              <h3 className="text-white text-center text-lg font-semibold p-4">
+                {product.title}
+              </h3>
+              <p>
+                <span className="text-2xl text-white font-bold px-4">
+                  ${product.price}
+                </span>
+                <span className="text-sm text-gray-400 line-through px-2">
+                  ${(product.price * 1.2).toFixed(2)}
+                </span>
+              </p>
+            </div>
+          ))}
+        </div>
+      )}
       <Footer />
     </>
   );

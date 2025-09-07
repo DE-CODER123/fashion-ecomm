@@ -32,7 +32,7 @@ const navLinks = [
 export default function NavBar() {
   const [open, setOpen] = useState(false);
   return (
-    <nav className="text-2xl justify-between sticky top-0 flex items-center gap-4 pb-4 px-4 bg-gray-700">
+    <nav className="text-2xl justify-between sticky top-0 flex items-center gap-4 pb-4 px-4 bg-gray-700 z-40">
       <h1 className="text-4xl font-bold text-white">Logo</h1>
       <div className="flex items-center gap-4">
         <ul className="hidden md:flex gap-4 justify-center items-center md:px-4">

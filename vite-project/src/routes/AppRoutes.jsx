@@ -4,6 +4,7 @@ const Home = lazy(() => import("../pages/home/Home.jsx"));
 const Shop = lazy(() => import("../pages/shop/Shop.jsx"));
 const Contact = lazy(() => import("../pages/contact/Contact.jsx"));
 import LazyLoader from "../components/lazyLoader/LazyLoader.jsx";
+import ShopDetail from "../pages/shop/ShopDetail.jsx";
 
 export default function AppRoutes() {
   const routes = [
@@ -23,6 +24,14 @@ export default function AppRoutes() {
         </Suspense>
       ),
     },
+    {
+  path: "/shop/:id",
+  element: (
+    <Suspense fallback={<LazyLoader />}>
+      <ShopDetail />
+    </Suspense>
+  ),
+},
     {
       path: "/contact",
       element: (
