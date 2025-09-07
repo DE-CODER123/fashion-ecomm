@@ -36,13 +36,13 @@ export default function Shop() {
           {products.map((product) => (
             <div
               key={product.id}
-              className="shadow-white rounded-2xl py-2 bg-gray-800"
+              className="shadow-white rounded-2xl py-2 bg-gray-800 flex flex-col h-full min-h-[420px]"
             >
               <img src={product.image} className="mx-auto h-40" />
-              <h3 className="text-white text-center text-lg font-semibold p-4">
+              <h3 className="text-white text-center text-lg font-semibold p-4 flex-1">
                 {product.title}
               </h3>
-              <div className="flex justify-between items-center px-4">
+              <div className="flex justify-between items-center px-4 mb-2">
                 <div>
                   <p>
                     <span className="text-2xl text-white font-bold px-4">
@@ -53,13 +53,16 @@ export default function Shop() {
                     </span>
                   </p>
                 </div>
-                <button className="bg-gray-500 text-white px-6 py-3 rounded hover:bg-gray-700 transition mt-4 mx-4">
-                  Add to Cart
-                </button>
+                <Link  to={`/shop/${product.id}`} className="flex justify-center items-center text-lg pt-2 text-sky-500 hover:text-sky-700 hover:text-2xl underline cursor-pointer">
+                  View Details
+                </Link>
               </div>
-              <Link  to={`/shop/${product.id}`} className="flex justify-center items-center text-lg pt-2 text-sky-500 hover:text-sky-700 hover:text-2xl underline cursor-pointer">
-                View Details
-              </Link>
+              <button className="w-full flex items-center justify-center gap-2 bg-gray-500 text-white py-3 rounded hover:bg-gray-700 transition mt-auto">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A1 1 0 007.5 17h9a1 1 0 00.85-1.53L17 13M7 13V6a1 1 0 011-1h3m4 0h2a1 1 0 011 1v7"></path>
+                </svg>
+                Add to Cart
+              </button>
             </div>
           ))}
         </div>
