@@ -24,7 +24,7 @@ export default function Home() {
   return (
     <>
       <NavBar />
-      <section className="flex flex-col md:flex-row items-center justify-between p-4 bg-gray-400">
+      <section className="flex flex-col md:flex-row items-center justify-between p-4 bg-gray-900">
         <div className="md:w-1/2 space-y-6 max-h-full">
           <h2 className="text-4xl text-white font-extrabold leading-tight">
             Unleash Your Style
