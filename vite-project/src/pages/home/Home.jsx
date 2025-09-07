@@ -12,7 +12,7 @@ export default function Home() {
       try {
         const res = await fetch("https://fakestoreapi.com/products");
         const data = await res.json();
-        setProducts(data);
+        setProducts(data.slice(0, 4));
         setLoading(false);
       } catch (error) {
         console.error("Error fetching products:", error);
