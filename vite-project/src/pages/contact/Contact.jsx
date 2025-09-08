@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBar from '../../components/navbar/Index';
 import Footer from '../../components/Footer';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 export default function Contact() {
   return (

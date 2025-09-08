@@ -1,5 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 export default function ModelLayout() {
   return (

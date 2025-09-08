@@ -2,10 +2,17 @@ import React, { useEffect, useState } from "react";
 import NavBar from "../../components/navbar/Index";
 import Footer from "../../components/Footer";
 import { Link } from "react-router";
+import { RiShoppingBag2Fill } from "@remixicon/react";
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
-export default function Shop() {
+export default function Shop({ cartItems, setCartItems }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const addToCart = (product) => {
+    setCartItems((cart) => [...cart, product]);
+  };
+
   useEffect(() => {
     async function fetchProducts() {
       try {
@@ -13,7 +20,6 @@ export default function Shop() {
         const data = await res.json();
         setProducts(data);
         setLoading(false);
-        console.log(data);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -53,14 +59,18 @@ export default function Shop() {
                     </span>
                   </p>
                 </div>
-                <Link  to={`/shop/${product.id}`} className="flex justify-center items-center text-lg pt-2 text-sky-500 hover:text-sky-700 hover:text-2xl underline cursor-pointer">
+                <Link
+                  to={`/shop/${product.id}`}
+                  className="flex justify-center items-center text-lg pt-2 text-sky-500 hover:text-sky-700 hover:text-2xl underline cursor-pointer"
+                >
                   View Details
                 </Link>
               </div>
-              <button className="w-full flex items-center justify-center gap-2 bg-gray-500 text-white py-3 rounded hover:bg-gray-700 transition mt-auto">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A1 1 0 007.5 17h9a1 1 0 00.85-1.53L17 13M7 13V6a1 1 0 011-1h3m4 0h2a1 1 0 011 1v7"></path>
-                </svg>
+              <button
+                className="w-full flex items-center justify-center gap-2 bg-gray-500 text-white py-3 rounded hover:bg-gray-700 transition mt-auto"
+                onClick={() => addToCart(product)}
+              >
+                <RiShoppingBag2Fill />
                 Add to Cart
               </button>
             </div>

@@ -4,6 +4,8 @@ import ModelLayout from "../../layout/ModelLayout";
 import { Link } from "react-router";
 import { RiCopyrightFill } from "@remixicon/react";
 import Footer from "../../components/Footer";
+import { SpeedInsights } from '@vercel/speed-insights/react';
+
 export default function Home() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);

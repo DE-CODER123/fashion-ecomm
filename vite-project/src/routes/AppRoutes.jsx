@@ -1,12 +1,14 @@
-import { Children, lazy, Suspense } from "react";
+import { Children, lazy, Suspense, useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router";
 const Home = lazy(() => import("../pages/home/Home.jsx"));
 const Shop = lazy(() => import("../pages/shop/Shop.jsx"));
 const Contact = lazy(() => import("../pages/contact/Contact.jsx"));
 import LazyLoader from "../components/lazyLoader/LazyLoader.jsx";
 import ShopDetail from "../pages/shop/ShopDetail.jsx";
+import Cart from "../pages/cart/Cart.jsx";
 
-export default function AppRoutes() {
+export default function AppRoutes({ cartItems, setCartItems }) {
+    
   const routes = [
     {
       index: true,
@@ -20,7 +22,7 @@ export default function AppRoutes() {
       path: "/shop",
       element: (
         <Suspense fallback={<LazyLoader />}>
-          <Shop />
+          <Shop cartItems={cartItems} setCartItems={setCartItems}/>
         </Suspense>
       ),
     },
@@ -28,7 +30,7 @@ export default function AppRoutes() {
   path: "/shop/:id",
   element: (
     <Suspense fallback={<LazyLoader />}>
-      <ShopDetail />
+      <ShopDetail cartItems={cartItems} setCartItems={setCartItems}/>
     </Suspense>
   ),
 },
@@ -37,6 +39,14 @@ export default function AppRoutes() {
       element: (
         <Suspense fallback={<LazyLoader />}>
           <Contact />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/cart",
+      element: (
+        <Suspense fallback={<LazyLoader />}>
+          <Cart cartItems={cartItems} />
         </Suspense>
       ),
     },

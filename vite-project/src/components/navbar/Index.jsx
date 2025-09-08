@@ -55,7 +55,7 @@ export default function NavBar() {
             <RiCloseLine className="text-3xl text-white md:hidden" />
           )}
         </button>
-        <RiShoppingCart2Line className="text-3xl text-white" />
+        <Link to="/cart"><RiShoppingCart2Line className="text-3xl text-white" /></Link>
         <RiSearch2Line className="text-3xl text-white" />
         {open && (
           <ul className="flex flex-col gap-4 absolute top-full left-0 w-full bg-gray-800 p-4 md:hidden">
@@ -69,7 +69,7 @@ export default function NavBar() {
               >
                 {link.label}
               </NavLink>
-            ))}
+            ))} 
           </ul>
         )}
       </div>

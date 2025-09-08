@@ -3,8 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import NavBar from '../../components/navbar/Index';
 import Footer from '../../components/Footer';
+import { RiShoppingBag2Fill } from '@remixicon/react';
+import {RiShoppingCart2Line } from "@remixicon/react";
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
-export default function ShopDetail() {
+export default function ShopDetail({cartItems, setCartItems}) {
   const { id } = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState(null);
@@ -26,6 +29,9 @@ export default function ShopDetail() {
     }
     fetchProduct();
   }, [id]);
+const addToCart = (product) => {
+    setCartItems((cart) => [...cart, product]);
+  };
 
   return (
     <>
@@ -57,9 +63,16 @@ export default function ShopDetail() {
                 <span className="text-2xl text-white font-bold">${product.price}</span>
                 <span className="text-gray-400 line-through">${(product.price * 1.2).toFixed(2)}</span>
               </div>
-              <button className="bg-gray-500 text-white px-6 py-3 rounded w-full hover:bg-gray-700 transition mt-2">
+              <button className="bg-gray-500 text-white px-6 py-3 rounded w-full hover:bg-gray-700 flex justify-center items-center gap-6 transition mt-2" onClick={() => addToCart(product)}>
+              <RiShoppingBag2Fill/>
                 Add to Cart
               </button>
+              <button
+          onClick={() => navigate("/cart")}
+          className="bg-gray-500 text-white px-6 py-3 rounded w-full hover:bg-gray-700 flex justify-center items-center gap-6 transition mt-2"
+        >
+          <RiShoppingCart2Line className="text-3xl text-white" /> cart
+        </button>
             </div>
           </div>
         ) : null}
