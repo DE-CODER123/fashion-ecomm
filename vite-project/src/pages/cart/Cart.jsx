@@ -32,10 +32,10 @@ export default function Cart
               </div>
               <div>
      <p>
-                <span className="text-2xl text-white font-bold px-4">
+                <span className="text-2xl text-white font-bold">
                   ${item.price}
                 </span>
-                <span className="text-sm text-gray-400 line-through px-2">
+                <span className="text-sm text-gray-400 line-through px-4">
                   ${(item.price * 1.2).toFixed(2)}
                 </span>
               </p>
